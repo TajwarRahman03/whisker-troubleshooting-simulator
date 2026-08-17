@@ -1,5 +1,7 @@
 # Whisker Troubleshooting Simulator
 
+Whisker Troubleshooting Simulator is an interactive training tool designed to help users learn Litter-Robot troubleshooting through guided, hands-on simulations. Users can interact with highlighted components, follow troubleshooting steps, clean sensors with draggable tools, perform control-panel sequences, and work through common light-code scenarios such as LR4 Red Solid and Flashing Blue conditions. The project is built with PHP, HTML, CSS, and JavaScript and focuses on making technical troubleshooting more engaging and easier to understand through interactive learning.
+
 ## Live Demo
 
 The Whisker Troubleshooting Simulator is deployed using GitHub Pages:
