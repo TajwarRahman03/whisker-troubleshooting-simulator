@@ -1,0 +1,417 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap");
+
+/* =========================
+   GLOBAL RESET
+========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+}
+
+
+/* =========================
+   PAGE BACKGROUND
+========================= */
+
+body {
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+
+    background:
+        radial-gradient(
+            circle at 20% 30%,
+            #7a2b02 0%,
+            transparent 35%
+        ),
+
+        radial-gradient(
+            circle at 75% 25%,
+            #b54d05 0%,
+            transparent 40%
+        ),
+
+        radial-gradient(
+            circle at 35% 80%,
+            #4a1502 0%,
+            transparent 38%
+        ),
+
+        radial-gradient(
+            circle at 85% 75%,
+            #df8616 0%,
+            transparent 42%
+        ),
+
+        linear-gradient(
+            90deg,
+            #431404 0%,
+            #651f02 15%,
+            #7c2e03 28%,
+            #984005 42%,
+            #aa4a06 52%,
+            #bb5909 64%,
+            #c6690e 76%,
+            #d57913 88%,
+            #e28916 100%
+        );
+
+    background-size:
+        180% 180%,
+        220% 220%,
+        200% 200%,
+        240% 240%,
+        300% 300%;
+
+    animation: liquidFlow 28s ease-in-out infinite;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.top-header {
+    position: relative;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    padding: 24px 40px;
+}
+
+
+/* =========================
+   LOGO CONTAINER
+========================= */
+
+.logo-container {
+    position: relative;
+
+    width: 260px;
+    height: 65px;
+
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+
+/* =========================
+   WHISKER LOGO
+========================= */
+
+.logo {
+    position: absolute;
+
+    width: 280px;
+    height: auto;
+
+    left: -10px;
+
+    /*
+       The PNG has transparent space
+       above and below the actual logo.
+       This moves the visible wordmark
+       into the logo container.
+    */
+    top: 50%;
+    transform: translateY(-50%);
+
+    display: block;
+}
+
+
+/* =========================
+   LIQUID FLOW ANIMATION
+========================= */
+
+@keyframes liquidFlow {
+
+    0% {
+        background-position:
+            0% 20%,
+            100% 10%,
+            10% 100%,
+            100% 80%,
+            0% 50%;
+    }
+
+    20% {
+        background-position:
+            25% 5%,
+            75% 30%,
+            20% 75%,
+            80% 60%,
+            20% 30%;
+    }
+
+    40% {
+        background-position:
+            50% 20%,
+            50% 10%,
+            40% 60%,
+            60% 80%,
+            50% 50%;
+    }
+
+    60% {
+        background-position:
+            70% 40%,
+            30% 35%,
+            60% 45%,
+            45% 60%,
+            80% 70%;
+    }
+
+    80% {
+        background-position:
+            40% 65%,
+            10% 50%,
+            75% 25%,
+            20% 40%,
+            50% 80%;
+    }
+
+    100% {
+        background-position:
+            0% 20%,
+            100% 10%,
+            10% 100%,
+            100% 80%,
+            0% 50%;
+    }
+}
+
+.model-nav {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    white-space: nowrap;
+
+    color: #fff;
+    font-family: "Inter", Arial, sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.04em;
+}
+
+.model-nav a {
+    position: relative;
+    color: inherit;
+    text-decoration: none;
+    transition: opacity 180ms ease;
+}
+
+.model-nav a::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -7px;
+    left: 0;
+    height: 2px;
+    border-radius: 999px;
+    background: currentColor;
+    transform: scaleX(0);
+    transition: transform 180ms ease;
+}
+
+.model-nav a:hover::after,
+.model-nav a:focus-visible::after,
+.model-nav a.active::after {
+    transform: scaleX(1);
+}
+
+
+/* =========================
+   SOFT BOX GRID
+========================= */
+
+.box-grid {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(18px, 2.2vw, 30px);
+}
+
+.simulation-heading {
+    margin: 0;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: clamp(32px, 4vw, 58px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    text-align: center;
+    white-space: nowrap;
+    text-shadow: 0 4px 18px rgba(55, 15, 0, 0.22);
+    animation: headingFadeIn 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes headingFadeIn {
+    from {
+        opacity: 0;
+        filter: blur(8px);
+        transform: translateY(14px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        filter: blur(0);
+        transform: translateY(0) scale(1);
+    }
+}
+
+.boxes {
+    display: grid;
+    grid-template-columns: repeat(4, clamp(140px, 16vw, 220px));
+    gap: clamp(16px, 2vw, 30px);
+}
+
+.soft-box {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 24px;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.62)),
+        var(--box-image, url("images/sim_placeholder.jpg")) center / cover no-repeat;
+    box-shadow:
+        0 16px 35px rgba(55, 15, 0, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition:
+        border-color 220ms ease,
+        background-color 220ms ease,
+        box-shadow 220ms ease,
+        transform 220ms ease;
+}
+
+.soft-box.lr4-red {
+    --box-image: url("images/LR4_red.jpg");
+}
+
+.soft-box.lr4-flash-blue {
+    --box-image: url("images/LR4_flash_blue.gif");
+}
+
+.simulation-link {
+    text-decoration: none;
+}
+
+.soft-box span {
+    color: rgba(255, 255, 255, 0.58);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: clamp(18px, 2vw, 28px);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-align: center;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.28);
+}
+
+.soft-box .box-label {
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 42px;
+    padding: 10px 18px;
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    color: #202020;
+    font-family: "Inter", Arial, sans-serif;
+    font-size: clamp(11px, 1.1vw, 16px);
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: 0;
+    text-align: left;
+    text-transform: none;
+    white-space: nowrap;
+    text-shadow: none;
+}
+
+.soft-box::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: -1px;
+    width: calc(100% + 2px);
+    height: 43px;
+    background: rgba(255, 255, 255, 0.94);
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 0 0 22px 22px;
+    box-sizing: border-box;
+}
+
+.soft-box:hover {
+    border-color: rgba(255, 255, 255, 0.72);
+    background:
+        linear-gradient(rgba(255, 255, 255, 0.54), rgba(255, 255, 255, 0.54)),
+        var(--box-image, url("images/sim_placeholder.jpg")) center / cover no-repeat;
+    box-shadow:
+        0 0 22px rgba(255, 255, 255, 0.65),
+        0 0 48px rgba(255, 255, 255, 0.3),
+        0 16px 35px rgba(55, 15, 0, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.55);
+    transform: translateY(-2px);
+}
+
+.soft-box.lr4-red,
+.soft-box.lr4-red:hover,
+.soft-box.lr4-flash-blue,
+.soft-box.lr4-flash-blue:hover {
+    background: var(--box-image) center / cover no-repeat;
+}
+
+@media (max-width: 600px) {
+    .box-grid {
+        width: calc(100% - 32px);
+    }
+
+    .simulation-heading {
+        font-size: clamp(28px, 9vw, 42px);
+    }
+
+    .boxes {
+        width: 100%;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+    }
+
+    .soft-box {
+        border-radius: 16px;
+    }
+}

@@ -1,0 +1,799 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap");
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+.page-home-link {
+    position: absolute;
+    z-index: 100;
+    top: 20px;
+    left: 24px;
+    padding: 9px 15px;
+    border: 0;
+    border-radius: 8px;
+    background:
+        radial-gradient(circle at 20% 30%, #7a2b02 0%, transparent 35%),
+        radial-gradient(circle at 75% 25%, #b54d05 0%, transparent 40%),
+        radial-gradient(circle at 35% 80%, #4a1502 0%, transparent 38%),
+        radial-gradient(circle at 85% 75%, #df8616 0%, transparent 42%),
+        linear-gradient(
+            90deg,
+            #431404 0%,
+            #651f02 15%,
+            #7c2e03 28%,
+            #984005 42%,
+            #aa4a06 52%,
+            #bb5909 64%,
+            #c6690e 76%,
+            #d57913 88%,
+            #e28916 100%
+        );
+    background-size: 180% 180%, 220% 220%, 200% 200%, 240% 240%, 300% 300%;
+    color: #fff;
+    font-family: "Inter", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.2;
+    text-decoration: none;
+    box-shadow: 0 3px 10px rgba(67, 20, 4, 0.2);
+    transition: filter 180ms ease, transform 180ms ease;
+}
+
+.page-home-link:hover {
+    filter: brightness(1.05);
+    transform: translateY(-1px);
+}
+
+.page-home-link:focus-visible {
+    outline: 3px solid rgba(255, 214, 0, 0.75);
+    outline-offset: 3px;
+}
+
+.page-home-link.is-hidden {
+    display: none;
+}
+
+.simulation-page {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    color: #202020;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.sensor-simulation-screen[hidden] {
+    display: none;
+}
+
+.simulation-layout[hidden] {
+    display: none;
+}
+
+.control-simulation-screen[hidden] {
+    display: none;
+}
+
+.sensor-simulation-screen {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(320px, 2fr);
+    align-items: center;
+    gap: 40px;
+    width: 100%;
+    height: 100%;
+    font-family: "Inter", Arial, sans-serif;
+}
+
+.control-simulation-screen {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(320px, 2fr);
+    align-items: center;
+    gap: 40px;
+    width: 100%;
+    height: 100%;
+    font-family: "Inter", Arial, sans-serif;
+}
+
+.controls-stage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-height: calc(100vh - 64px);
+    padding: 14px;
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    border-radius: 18px;
+    background: #fff;
+    overflow: hidden;
+}
+
+.controls-stage.is-complete {
+    border-color: transparent;
+    background: transparent;
+}
+
+.controls-canvas {
+    position: relative;
+    width: 100%;
+    line-height: 0;
+}
+
+.controls-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: calc(100vh - 94px);
+    object-fit: contain;
+}
+
+.control-hotspot {
+    position: absolute;
+    z-index: 2;
+    padding: 0;
+    border: 3px solid rgba(255, 214, 0, 0.9);
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+    animation: cleaningSensorPulse 1.4s ease-in-out infinite;
+}
+
+.control-hotspot[hidden] {
+    display: none;
+}
+
+.reset-hotspot {
+    top: 53.4%;
+    left: 40.3%;
+    width: 9%;
+    height: 14.1%;
+}
+
+.cycle-hotspot {
+    top: 53.4%;
+    left: 27.5%;
+    width: 9%;
+    height: 14.1%;
+}
+
+.control-information {
+    padding: 26px;
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    border-radius: 16px;
+    background: #fff;
+}
+
+.control-information h1 {
+    margin: 0 0 14px;
+    font-size: clamp(24px, 2.2vw, 32px);
+}
+
+.control-information p {
+    margin: 0 0 14px;
+    line-height: 1.55;
+}
+
+.control-information p:last-child {
+    margin-bottom: 0;
+}
+
+.completion-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.completion-actions[hidden] {
+    display: none;
+}
+
+.completion-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 11px 18px;
+    border: 1px solid #202020;
+    border-radius: 10px;
+    font: inherit;
+    font-weight: 600;
+    line-height: 1.2;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.completion-primary {
+    background: #202020;
+    color: #fff;
+}
+
+.completion-secondary {
+    background: #fff;
+    color: #202020;
+}
+
+.completion-action:focus-visible {
+    outline: 3px solid rgba(255, 214, 0, 0.75);
+    outline-offset: 3px;
+}
+
+.sensor-stage {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-height: calc(100vh - 64px);
+    padding: 14px;
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    border-radius: 18px;
+    background: #fff;
+    overflow: hidden;
+}
+
+.sensor-canvas {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 100%;
+    line-height: 0;
+}
+
+.sensor-image {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: calc(100vh - 94px);
+    object-fit: contain;
+}
+
+.cleaning-target,
+.sensor-debris {
+    position: absolute;
+    pointer-events: none;
+}
+
+.cleaning-target {
+    z-index: 2;
+    border: 2px solid rgba(255, 214, 0, 0.9);
+    border-radius: 999px;
+    background: transparent;
+    animation: cleaningSensorPulse 1.4s ease-in-out infinite;
+}
+
+.cleaning-target.is-clean {
+    border-color: transparent;
+    box-shadow: none;
+    animation: none;
+}
+
+.cleaning-left {
+    top: 30.8%;
+    left: 27.2%;
+    width: 8%;
+    height: 7.3%;
+    transform: rotate(-9deg);
+}
+
+.cleaning-center {
+    top: 28.3%;
+    left: 45.2%;
+    width: 7.7%;
+    height: 6.6%;
+}
+
+.cleaning-right {
+    top: 31.1%;
+    left: 62.7%;
+    width: 8%;
+    height: 7.3%;
+    transform: rotate(9deg);
+}
+
+.sensor-debris {
+    z-index: 3;
+    border-radius: 50%;
+    transition: opacity 350ms ease;
+}
+
+.debris-left {
+    top: 30.5%;
+    left: 27%;
+    width: 8.4%;
+    height: 8%;
+}
+
+.debris-center {
+    top: 28%;
+    left: 45%;
+    width: 8.1%;
+    height: 7.2%;
+}
+
+.debris-right {
+    top: 30.8%;
+    left: 62.5%;
+    width: 8.4%;
+    height: 8%;
+}
+
+.debris-primary {
+    background:
+        radial-gradient(circle at 20% 35%, rgba(112, 91, 64, 0.8) 0 3%, transparent 4%),
+        radial-gradient(circle at 47% 70%, rgba(86, 75, 61, 0.75) 0 4%, transparent 5%),
+        radial-gradient(circle at 76% 30%, rgba(126, 106, 78, 0.8) 0 3%, transparent 4%),
+        linear-gradient(18deg, transparent 45%, rgba(105, 91, 73, 0.7) 47% 51%, transparent 53%);
+}
+
+.debris-fine {
+    background:
+        radial-gradient(circle at 31% 58%, rgba(105, 94, 78, 0.65) 0 2%, transparent 3%),
+        radial-gradient(circle at 62% 44%, rgba(119, 105, 84, 0.6) 0 2%, transparent 3%),
+        radial-gradient(circle at 83% 72%, rgba(92, 83, 72, 0.65) 0 2%, transparent 3%);
+}
+
+.sensor-debris.removed {
+    opacity: 0;
+}
+
+.sensor-debris.vacuuming {
+    animation: debrisVacuum 1.2s ease-in forwards;
+}
+
+.sensor-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 0;
+}
+
+.sensor-introduction,
+.tools-panel {
+    padding: 24px;
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    border-radius: 16px;
+    background: #fff;
+}
+
+.sensor-introduction h1 {
+    margin: 0 0 14px;
+    font-size: clamp(24px, 2.2vw, 32px);
+}
+
+.sensor-introduction p {
+    margin: 0 0 14px;
+    line-height: 1.55;
+}
+
+.sensor-introduction p:last-child {
+    margin-bottom: 0;
+    font-weight: 600;
+}
+
+.tools-heading {
+    margin-bottom: 16px;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.tool-options {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.tool-option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    height: 108px;
+    padding: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 10px;
+    background: #f6f6f4;
+    color: #202020;
+    font: inherit;
+    cursor: pointer;
+}
+
+.tool-image {
+    display: block;
+    max-width: 92px;
+    max-height: 88px;
+    object-fit: contain;
+    user-select: none;
+    -webkit-user-drag: none;
+    touch-action: none;
+}
+
+.tool-option.is-active {
+    border-color: #e2bd00;
+    box-shadow: 0 0 0 2px rgba(255, 214, 0, 0.32);
+}
+
+.tool-option.needs-selection {
+    animation: toolPrompt 1.4s ease-in-out infinite;
+}
+
+.tool-image.dragging,
+.tool-image.interacting {
+    position: fixed;
+    z-index: 50;
+    width: 104px;
+    max-width: none;
+    max-height: none;
+    pointer-events: none;
+}
+
+.cloth-image.dragging,
+.cloth-image.interacting {
+    transform: translate(-50%, -50%);
+}
+
+.hose-image.dragging,
+.hose-image.interacting {
+    width: 118px;
+    transform: translate(-78%, -8%);
+}
+
+.cloth-image.interacting {
+    animation: clothScrub 1.2s ease-in-out;
+}
+
+.hose-image.interacting {
+    animation: vacuumPulse 1.2s ease-in-out;
+}
+
+.tool-option:hover:not(:disabled),
+.tool-option:focus-visible:not(:disabled) {
+    border-color: rgba(0, 0, 0, 0.3);
+    background: #fff;
+}
+
+.tool-option:disabled {
+    color: #737373;
+    cursor: not-allowed;
+    opacity: 0.58;
+}
+
+.finish-cleaning {
+    margin-top: 4px;
+    padding: 11px 18px;
+    border: 0;
+    border-radius: 10px;
+    background: #202020;
+    color: #fff;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.simulation-layout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    width: 100%;
+}
+
+.robot-stage {
+    position: relative;
+    width: min(60vw, calc(100vh - 150px), 650px);
+    flex: 0 1 650px;
+    margin: 0 auto;
+}
+
+.robot-image {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Percentage values keep the hotspot aligned as LR4.png resizes. */
+.red-light-hotspot {
+    position: absolute;
+    top: 14.3%;
+    left: 65.7%;
+    width: 12.4%;
+    height: 3%;
+
+    padding: 0;
+    border: 3px solid rgba(255, 220, 0, 0.9);
+    border-radius: 999px;
+    background: transparent;
+    cursor: pointer;
+    transform: rotate(40deg);
+    animation: redLightPulse 1.4s ease-in-out infinite;
+}
+
+.red-light-hotspot.completed {
+    border-color: transparent;
+    cursor: default;
+    animation: none;
+    box-shadow: none;
+}
+
+.red-light-callout {
+    position: absolute;
+    top: 7.5%;
+    left: 57%;
+
+    padding: 6px 10px;
+    border: 0;
+    border-radius: 6px;
+    background: #ffd600;
+    color: #111;
+    font-family: "Inter", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.red-light-callout::before {
+    content: none;
+}
+
+.red-light-callout::after {
+    content: none;
+}
+
+.red-light-callout.completed {
+    display: none;
+}
+
+.sensor-hotspot {
+    position: absolute;
+    border: 2px solid rgba(255, 214, 0, 0.9);
+    border-radius: 999px;
+    background: transparent;
+    pointer-events: none;
+    animation: sensorPulse 1.4s ease-in-out infinite;
+}
+
+.sensor-hotspot[hidden] {
+    display: none;
+}
+
+.sensor-left {
+    top: 14.25%;
+    left: 39.75%;
+    width: 3.55%;
+    height: 2.75%;
+    transform: rotate(-12deg);
+}
+
+.sensor-center {
+    top: 13.3%;
+    left: 48.05%;
+    width: 3.55%;
+    height: 2.6%;
+}
+
+.sensor-right {
+    top: 14.25%;
+    left: 56.65%;
+    width: 3.55%;
+    height: 2.75%;
+    transform: rotate(12deg);
+}
+
+.simulation-info {
+    width: min(340px, 100%);
+    padding: 24px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    animation: infoReveal 400ms ease-out both;
+}
+
+.simulation-info h1 {
+    margin: 0 0 12px;
+    font-size: 26px;
+}
+
+.simulation-info p {
+    margin: 0 0 14px;
+    line-height: 1.5;
+}
+
+.simulation-info button {
+    width: 100%;
+    margin-top: 4px;
+    padding: 11px 16px;
+    border: 0;
+    border-radius: 10px;
+    background: #202020;
+    color: #fff;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.simulation-info button:disabled {
+    cursor: default;
+    opacity: 0.6;
+}
+
+@keyframes redLightPulse {
+    0%,
+    100% {
+        border-color: rgba(255, 215, 0, 0.75);
+        box-shadow:
+            0 0 5px rgba(255, 215, 0, 0.7),
+            0 0 10px rgba(255, 215, 0, 0.5);
+    }
+
+    50% {
+        border-color: rgba(255, 215, 0, 1);
+        box-shadow:
+            0 0 8px rgba(255, 215, 0, 1),
+            0 0 14px rgba(255, 215, 0, 0.75);
+    }
+}
+
+@keyframes sensorPulse {
+    0%,
+    100% {
+        border-color: rgba(255, 214, 0, 0.75);
+        box-shadow:
+            0 0 4px rgba(255, 214, 0, 0.55),
+            0 0 8px rgba(255, 214, 0, 0.35);
+    }
+
+    50% {
+        border-color: rgba(255, 214, 0, 1);
+        box-shadow:
+            0 0 6px rgba(255, 214, 0, 0.9),
+            0 0 11px rgba(255, 214, 0, 0.55);
+    }
+}
+
+@keyframes cleaningSensorPulse {
+    0%,
+    100% {
+        border-color: rgba(255, 214, 0, 0.75);
+        box-shadow:
+            0 0 4px rgba(255, 214, 0, 0.55),
+            0 0 8px rgba(255, 214, 0, 0.35);
+    }
+
+    50% {
+        border-color: rgba(255, 214, 0, 1);
+        box-shadow:
+            0 0 6px rgba(255, 214, 0, 0.9),
+            0 0 11px rgba(255, 214, 0, 0.55);
+    }
+}
+
+@keyframes clothScrub {
+    0%,
+    100% {
+        transform: translate(-50%, -50%) translateX(0) rotate(0);
+    }
+
+    25% {
+        transform: translate(-50%, -50%) translate(-5px, -2px) rotate(-5deg);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) translate(5px, 2px) rotate(5deg);
+    }
+
+    75% {
+        transform: translate(-50%, -50%) translate(-4px, 2px) rotate(-4deg);
+    }
+}
+
+@keyframes vacuumPulse {
+    0%,
+    100% {
+        opacity: 1;
+        transform: translate(-78%, -8%) scale(1);
+    }
+
+    50% {
+        opacity: 0.76;
+        transform: translate(-78%, -8%) scale(1.035);
+    }
+}
+
+@keyframes debrisVacuum {
+    to {
+        opacity: 0;
+        transform: scale(0.2);
+    }
+}
+
+@keyframes toolPrompt {
+    0%,
+    100% {
+        box-shadow: 0 0 0 2px rgba(255, 214, 0, 0.25);
+    }
+
+    50% {
+        box-shadow: 0 0 0 4px rgba(255, 214, 0, 0.7);
+    }
+}
+
+@keyframes infoReveal {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 850px) {
+    html,
+    body {
+        height: auto;
+        overflow: auto;
+    }
+
+    .simulation-page {
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .simulation-layout {
+        flex-direction: column;
+    }
+
+    .robot-stage {
+        width: min(78vw, calc(100vh - 150px), 540px);
+        flex-basis: auto;
+    }
+
+    .sensor-simulation-screen {
+        grid-template-columns: 1fr;
+        height: auto;
+        gap: 24px;
+    }
+
+    .control-simulation-screen {
+        grid-template-columns: 1fr;
+        height: auto;
+        gap: 24px;
+    }
+
+    .sensor-stage,
+    .sensor-image,
+    .controls-stage,
+    .controls-image {
+        max-height: none;
+    }
+
+    .completion-actions {
+        flex-direction: column;
+    }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .red-light-hotspot,
+    .simulation-info {
+        animation-duration: 1ms;
+    }
+}
