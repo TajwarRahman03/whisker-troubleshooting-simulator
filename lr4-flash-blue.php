@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LR4 Flashing Blue Light</title>
+    <link rel="stylesheet" href="lr4-red.css">
+    <link rel="stylesheet" href="lr4-flash-blue.css">
+</head>
+
+<body>
+    <a class="page-home-link" href="index.php">Return Home</a>
+
+    <main class="simulation-page">
+        <div class="simulation-layout" id="blueLightScreen">
+            <div class="robot-stage">
+                <img
+                    class="robot-image"
+                    src="images/LR4_flash_blue.gif"
+                    alt="Litter-Robot 4 with a flashing blue light"
+                >
+
+                <button
+                    class="red-light-hotspot blue-light-hotspot"
+                    id="blueLightHotspot"
+                    type="button"
+                    aria-label="Select the flashing blue light"
+                ></button>
+
+                <button class="red-light-callout blue-light-callout" id="blueLightCallout" type="button">
+                    Click here
+                </button>
+            </div>
+
+            <section class="simulation-info" id="blueLightInfo" aria-live="polite" hidden>
+                <h1>Flashing Blue</h1>
+
+                <p>
+                    If your unit’s light bar is flashing blue, this indicates that
+                    the waste drawer is full.
+                </p>
+
+                <p>
+                    Empty the waste drawer, press the <strong>Reset</strong> button,
+                    then press the <strong>Cycle</strong> button.
+                </p>
+
+                <p>
+                    However, if the light pattern is still persisting, we can proceed
+                    with recalibrating the waste drawer sensor and cleaning the curtain sensors.
+                </p>
+
+                <button type="button" id="continueButton">Continue</button>
+            </section>
+        </div>
+
+        <?php include __DIR__ . '/includes/sensor-cleaning.php'; ?>
+
+        <section class="waste-drawer-screen" id="wasteDrawerScreen" hidden>
+            <div class="drawer-stage">
+                <div class="drawer-canvas">
+                    <img
+                        class="drawer-image"
+                        id="drawerImage"
+                        src="images/wasted1.png"
+                        alt="Open Litter-Robot waste drawer"
+                    >
+
+                    <span class="drawer-liner" id="drawerLiner" aria-hidden="true"></span>
+                    <span class="paper-placement-target" id="paperPlacementTarget" aria-hidden="true" hidden></span>
+
+                    <span class="drawer-debris debris-one" data-debris="first" aria-hidden="true" hidden></span>
+                    <span class="drawer-debris debris-two" data-debris="second" aria-hidden="true" hidden></span>
+                    <span class="drawer-debris debris-three" data-debris="third" aria-hidden="true" hidden></span>
+                </div>
+            </div>
+
+            <div class="drawer-controls">
+                <div class="drawer-introduction">
+                    <h1 id="drawerStepTitle">Clean the Waste Drawer</h1>
+
+                    <p id="drawerStepInstruction">
+                        Remove the waste drawer liner, then wipe the drawer clean
+                        to remove any remaining dirt and debris.
+                    </p>
+
+                    <p id="drawerStepPrompt">
+                        Start by selecting the hand tool and removing the waste drawer liner.
+                    </p>
+
+                    <button class="finish-cleaning" id="drawerNextButton" type="button" hidden>
+                        Next
+                    </button>
+                </div>
+
+                <div class="tools-panel">
+                    <div class="tools-heading">Tools</div>
+
+                    <div class="tool-options">
+                        <button class="tool-option" id="drawerHandTool" type="button" aria-label="Hand tool" aria-pressed="false">
+                            <img class="tool-image hand-image" src="images/hand.png" alt="" draggable="false">
+                        </button>
+
+                        <button class="tool-option" id="drawerClothTool" type="button" aria-label="Microfiber Cloth, locked" aria-pressed="false" disabled>
+                            <img class="tool-image cloth-image" src="images/cloth.png" alt="" draggable="false">
+                        </button>
+
+                        <button class="tool-option" id="drawerPaperTool" type="button" aria-label="White paper, locked" aria-pressed="false" disabled>
+                            <img class="tool-image paper-image" src="images/paper.png" alt="" draggable="false">
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="control-simulation-screen" id="blueControlScreen" hidden>
+            <div class="controls-stage" id="blueControlsStage">
+                <div class="controls-canvas">
+                    <img
+                        class="controls-image"
+                        id="blueTroubleshootingImage"
+                        src="images/Controls_LR4.jpg"
+                        alt="Litter-Robot 4 control panel"
+                    >
+
+                    <button class="control-hotspot blue-power-hotspot" id="bluePowerHotspot" type="button" aria-label="Power button"></button>
+                    <button class="control-hotspot blue-connect-hotspot" id="blueConnectHotspot" type="button" aria-label="Connect button" hidden></button>
+                    <button class="control-hotspot reset-hotspot" id="blueResetHotspot" type="button" aria-label="Reset button" hidden></button>
+                    <button class="control-hotspot blue-empty-hotspot" id="blueEmptyHotspot" type="button" aria-label="Empty button" hidden></button>
+                    <button class="control-hotspot cycle-hotspot" id="blueCycleHotspot" type="button" aria-label="Cycle button" hidden></button>
+                </div>
+            </div>
+
+            <div class="control-information">
+                <h1 id="blueControlTitle">Turn Off Litter-Robot 4</h1>
+
+                <div id="blueControlContent">
+                    <p>Next, press the Power button to turn Litter-Robot 4 off.</p>
+                    <p><strong>Do not unplug the unit.</strong></p>
+                </div>
+
+                <div class="completion-actions" id="blueCompletionActions" hidden>
+                    <a class="completion-action completion-primary" href="index.php">
+                        Return Home
+                    </a>
+
+                    <button class="completion-action completion-secondary" id="resetBlueSimulationButton" type="button">
+                        Reset Simulation
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="sensor-cleaning.js"></script>
+    <script src="waste-drawer.js"></script>
+    <script src="lr4-flash-blue.js"></script>
+</body>
+
+</html>
